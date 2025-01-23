@@ -1,0 +1,38 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.word_container{
+    width: 45%; 
+    border: 2px dashed grey;
+    padding: 20px;
+    min-height: 500px;
+}
+
+.workspace {
+    width: 45%;
+    border: 2px dashed grey;
+    padding: 20px;
+    min-height: 500px;
+}
+
+.word {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 15px;
+    background-color: white;
+    border-radius: 5px;
+    font-size: 30px;
+}
+
+button {
+    margin-top: 20px; 
+}
