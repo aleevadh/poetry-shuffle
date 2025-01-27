@@ -1,4 +1,4 @@
-// All the words
+//words
 const words = {
     NOUN: ["love", "heart", "sky", "eyes", "fire"],
     VERB: ["have", "come", "do", "forget", "has"],
@@ -7,22 +7,22 @@ const words = {
     OTHER: ["the", "I", "by", "and", "you"],
   };
   
-  // Populate words in the first container
+  //put words in first container
   const wordContainer = document.querySelector(".word_container");
   for (const [category, wordList] of Object.entries(words)) {
     wordList.forEach((word) => {
       const wordElement = document.createElement("div");
       wordElement.textContent = word;
       wordElement.classList.add("word");
-      wordElement.draggable = true; // Making words draggable
+      wordElement.draggable = true; //making words draggable
       wordContainer.appendChild(wordElement);
     });
   }
   
-  // Drag and drop functionality
+  //drag and drop
   const workspace = document.querySelector(".workspace");
   
-  // Handle dragstart event
+  //dragstart
   wordContainer.addEventListener("dragstart", (e) => {
     if (e.target.classList.contains("word")) {
       e.target.classList.add("dragging");
@@ -30,43 +30,38 @@ const words = {
     }
   });
   
-  // Handle dragend event
+  //dragend event
   wordContainer.addEventListener("dragend", (e) => {
     if (e.target.classList.contains("word")) {
       e.target.classList.remove("dragging");
     }
   });
   
-  // Allow dropping in the workspace
+  //dropping
   workspace.addEventListener("dragover", (e) => {
     e.preventDefault();
   });
-  
-  // Handle drop event in the workspace
+
   workspace.addEventListener("drop", (e) => {
     e.preventDefault();
     const droppedWord = e.dataTransfer.getData("text/plain");
   
-    // Create a new word in the workspace
     const wordElement = document.createElement("div");
     wordElement.textContent = droppedWord;
     wordElement.classList.add("word");
     workspace.appendChild(wordElement);
   
-    // Remove the word from the word container
+    //remove the word from the container
     const wordsInContainer = Array.from(wordContainer.querySelectorAll(".word"));
     const wordToRemove = wordsInContainer.find((word) => word.textContent === droppedWord);
     if (wordToRemove) {
       wordContainer.removeChild(wordToRemove);
     }
   });
-  
- 
-  // Save button: Save the poem
-  document.getElementById("save-poem").addEventListener("click", () => {
-    const poemWords = Array.from(workspace.querySelectorAll(".word"))
-      .map((word) => word.textContent)
-      .join(" ");
+
+  //print poem
+  document.getElementById('save-poem').addEventListener('click', () => {
+    const poemWords = Array.from(workspace.querySelectorAll('.word')).map(word => word.textContent).join(' ');
     alert(`${poemWords}`);
   });
   
